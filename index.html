@@ -243,8 +243,22 @@
     }
 
     /* ═══ COUNTDOWN ══════════════════════════════════════════════ */
-    .cd-box { background:rgba(255,255,255,.08); backdrop-filter:blur(10px);
-      border:1px solid rgba(201,169,110,.35); border-radius:8px; }
+    .cd-box {
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border: 1px solid rgba(201,169,110,.32);
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .cd-sep {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: rgba(201,169,110,.45);
+      margin-bottom: 1.4rem;
+      align-self: center;
+      user-select: none;
+    }
 
     /* ═══ ENVELOPE ═══════════════════════════════════════════════ */
     .env-scene { position:relative; min-height:700px; display:flex;
@@ -313,7 +327,7 @@
     .img-badge { width:88px; height:88px; border-radius:12px; overflow:hidden;
       box-shadow:0 4px 16px rgba(0,0,0,.25); flex-shrink:0; }
     .img-badge img { width:100%; height:100%; object-fit:cover; }
-    .card-img { width:100%; height:160px; object-fit:cover; border-radius:8px 8px 0 0;
+    .card-img { width:100%; height:220px; object-fit:cover; border-radius:16px 16px 0 0;
       display:block; }
     .deco-img { width:80px; height:80px; border-radius:50%; object-fit:cover;
       border:2px solid rgba(201,169,110,.4); opacity:.85; }
@@ -323,8 +337,91 @@
     .scroll-cue { animation:cue 1.8s ease-in-out infinite; }
 
     /* ═══ CARD LIFT ══════════════════════════════════════════════ */
-    .card-lift { transition:transform .35s ease,box-shadow .35s ease; }
-    .card-lift:hover { transform:translateY(-6px); box-shadow:0 20px 60px rgba(0,0,0,.12); }
+    .card-lift { transition:transform .4s ease,box-shadow .4s ease; }
+    .card-lift:hover { transform:translateY(-8px) scale(1.01);
+      box-shadow:0 28px 70px rgba(0,0,0,.28); }
+
+    /* ═══ HERO GLOW ══════════════════════════════════════════════ */
+    .hero-glow-orb {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(700px, 90vw); height: min(700px, 90vh);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,141,181,.09) 0%, rgba(201,169,110,.04) 45%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ═══ PAPER TEXTURE (light sections) ════════════════════════ */
+    .paper-tex { position: relative; overflow: hidden; }
+    .paper-tex::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(circle, rgba(154,123,79,.055) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* ═══ GOLD SHIMMER BUTTON ════════════════════════════════════ */
+    .btn-gold {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-lt) 100%);
+      color: var(--gold-lt);
+      border: 1px solid rgba(201,169,110,.38);
+      border-radius: 6px;
+      letter-spacing: .32em;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .btn-gold::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 38%, rgba(201,169,110,.22) 50%, transparent 62%);
+      background-size: 250% 100%;
+      background-position: 200% center;
+      transition: background-position .65s ease;
+      pointer-events: none;
+    }
+    .btn-gold:hover { transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(0,0,0,.28); border-color: rgba(201,169,110,.65); }
+    .btn-gold:hover::after { background-position: -200% center; }
+
+    /* ═══ FORM INPUT ═════════════════════════════════════════════ */
+    .form-inp {
+      width: 100%; padding: 14px 20px;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      color: var(--navy); background: white;
+      border: 1.5px solid rgba(26,50,96,.2); border-radius: 8px;
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+    .form-inp:focus {
+      outline: none;
+      border-color: rgba(201,169,110,.7);
+      box-shadow: 0 0 0 3px rgba(201,169,110,.14);
+    }
+    .form-inp::placeholder { color: rgba(26,50,96,.38); }
+
+    /* ═══ PORTRAIT PANEL ═════════════════════════════════════════ */
+    .portrait-panel { min-height: 520px; }
+
+    /* ═══ SECTION DIVIDER ORNAMENT ═══════════════════════════════ */
+    .ornament-row {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      padding: 14px 0;
+    }
+    .ornament-row .line {
+      flex: 1; height: 1px; max-width: 120px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,.45));
+    }
+    .ornament-row .line.rev {
+      background: linear-gradient(to left, transparent, rgba(201,169,110,.45));
+    }
+
+    /* ═══ DARK SECTION OVERLAY DEPTH ════════════════════════════ */
+    .dark-veil::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(74,141,181,.06) 0%, transparent 65%),
+                  radial-gradient(ellipse at 50% 100%, rgba(201,169,110,.04) 0%, transparent 60%);
+      z-index: 0;
+    }
 
     @media (max-width:640px) {
       .env-wrap { width:290px; } .env-letter { width:268px; bottom:175px; }
@@ -462,20 +559,19 @@
   <!-- curtain CTA overlay -->
   <div x-show="!curtainOpen"
     class="fixed inset-0 flex flex-col items-center justify-center z-[9500] pointer-events-none">
-    <p class="font-cormorant text-xl italic tracking-[.45em] mb-2"
-      style="color:rgba(160,205,232,.9)">You are cordially invited</p>
-    <p class="font-cormorant text-sm tracking-[.3em] mb-8"
-      style="color:rgba(201,169,110,.6)">Korede Alonge Matthias &amp; Fawekun Aanuoluwapo Susan</p>
+    <p class="font-cormorant italic mb-3"
+      style="font-size:1rem;letter-spacing:.5em;color:rgba(160,205,232,.85)">You are cordially invited</p>
+    <p class="font-vibes mb-6" style="font-size:clamp(2.4rem,8vw,4rem);color:rgba(248,246,242,.92);text-shadow:0 4px 24px rgba(0,0,0,.5)">Korede &amp; Susan</p>
+    <p class="font-cormorant mb-10" style="font-size:.75rem;letter-spacing:.32em;color:rgba(201,169,110,.55);text-transform:uppercase">29 · August · 2026</p>
     <button id="enter-btn" @click="openCurtain()"
-      class="pointer-events-auto font-cormorant tracking-[.35em] text-sm uppercase px-12 py-4 border rounded-sm transition-all hover:bg-white/10"
-      style="color:#C9A96E;border-color:#C9A96E;background:transparent">
+      class="pointer-events-auto btn-gold font-cormorant text-sm uppercase px-14 py-4"
+      style="background:transparent;border:1px solid rgba(201,169,110,.55);color:#C9A96E">
       Open Invitation
     </button>
-    <!-- Lordicon animated heart below the button -->
     <lord-icon src="https://cdn.lordicon.com/ulnswmkk.json"
       trigger="loop" delay="500"
       colors="primary:#C9A96E,secondary:#4A8DB5"
-      style="width:44px;height:44px;margin-top:20px;pointer-events:none">
+      style="width:44px;height:44px;margin-top:22px;pointer-events:none">
     </lord-icon>
   </div>
 
@@ -486,10 +582,11 @@
   <main>
 
     <!-- ── 1. HERO ──────────────────────────────────────────── -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style="background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 55%,var(--navy) 100%)">
+    <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden dark-veil"
+      style="background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 50%,#0a1830 100%)">
 
       <div id="starfield" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+      <div class="hero-glow-orb"></div>
 
       <!-- small flower images as corner accents -->
       <div class="absolute top-0 left-0 w-40 h-40 pointer-events-none" style="opacity:.22">
@@ -519,30 +616,33 @@
           style="color:rgba(160,205,232,.75)">The Wedding of</p>
 
         <h1 class="font-vibes leading-none f-up"
-          style="font-size:clamp(4.5rem,15vw,9rem);color:var(--offwhite)">Korede</h1>
+          style="font-size:clamp(4.8rem,15vw,9.5rem);color:var(--offwhite);text-shadow:0 4px 32px rgba(74,141,181,.35),0 2px 8px rgba(0,0,0,.4)">Korede</h1>
 
-        <div class="gold-line my-5 mx-auto f-up" style="max-width:280px">
-          <svg class="ring-glow" width="64" height="32" viewBox="0 0 64 32">
-            <circle cx="22" cy="16" r="13" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
-            <circle cx="42" cy="16" r="13" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
+        <div class="gold-line my-5 mx-auto f-up" style="max-width:300px">
+          <svg class="ring-glow" width="72" height="36" viewBox="0 0 72 36">
+            <circle cx="24" cy="18" r="15" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
+            <circle cx="48" cy="18" r="15" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
           </svg>
         </div>
 
         <h1 class="font-vibes leading-none f-up"
-          style="font-size:clamp(4.5rem,15vw,9rem);color:var(--offwhite)">Susan</h1>
+          style="font-size:clamp(4.8rem,15vw,9.5rem);color:var(--offwhite);text-shadow:0 4px 32px rgba(74,141,181,.35),0 2px 8px rgba(0,0,0,.4)">Susan</h1>
 
-        <p class="font-cormorant italic text-lg mt-6 f-up"
-          style="color:rgba(160,205,232,.65);letter-spacing:.1em">
+        <p class="font-cormorant italic mt-7 f-up"
+          style="font-size:1.05rem;color:rgba(160,205,232,.6);letter-spacing:.18em">
           Korede Alonge Matthias &amp; Fawekun Aanuoluwapo Susan
         </p>
 
-        <!-- countdown -->
-        <div class="mt-12 flex flex-wrap gap-3 justify-center f-up">
-          <template x-for="u in countdown" :key="u.label">
-            <div class="cd-box px-5 py-3 min-w-[72px] text-center">
-              <div class="font-playfair text-3xl font-bold shimmer" x-text="u.value"></div>
-              <div class="font-cormorant text-xs tracking-widest uppercase mt-1"
-                style="color:rgba(248,246,242,.5)" x-text="u.label"></div>
+        <!-- countdown with colon separators -->
+        <div class="mt-14 flex items-end gap-1 sm:gap-2 justify-center f-up">
+          <template x-for="(u, idx) in countdown" :key="u.label">
+            <div class="flex items-end gap-1 sm:gap-2">
+              <div class="cd-box px-4 sm:px-6 py-4 min-w-[76px] sm:min-w-[88px] text-center">
+                <div class="font-playfair text-4xl sm:text-5xl font-bold shimmer leading-none" x-text="u.value"></div>
+                <div class="font-cormorant text-xs tracking-widest uppercase mt-2"
+                  style="color:rgba(248,246,242,.48)" x-text="u.label"></div>
+              </div>
+              <span class="cd-sep" x-show="idx < countdown.length - 1">:</span>
             </div>
           </template>
         </div>
@@ -568,7 +668,7 @@
 
 
     <!-- ── 2. ENVELOPE / LETTER ─────────────────────────────── -->
-    <section class="relative py-16 px-6 overflow-hidden" style="z-index:10">
+    <section class="relative py-20 px-6 overflow-hidden paper-tex" style="z-index:10">
       <!-- soft background: couple illustration, heavily veiled -->
       <img src="couple_under_love_illustration.jpeg" alt=""
         class="absolute inset-0 w-full h-full object-cover pointer-events-none"
@@ -627,8 +727,8 @@
 
 
     <!-- ── 3. SCRATCH-OFF DATE (3 heart cards) ───────────────── -->
-    <section class="py-24 px-6 relative overflow-hidden"
-      style="background:linear-gradient(150deg,var(--navy),var(--navy-mid))">
+    <section class="py-28 px-6 relative overflow-hidden dark-veil"
+      style="background:linear-gradient(150deg,var(--navy) 0%,var(--navy-mid) 55%,var(--navy) 100%)">
       <!-- large watermark heart shapes -->
       <svg class="absolute inset-0 w-full h-full opacity-[.045] pointer-events-none"
         viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -788,7 +888,7 @@
 
 
     <!-- ── 4. OUR LOVE STORY ────────────────────────────────── -->
-    <section class="py-24 px-6 relative overflow-hidden" style="background:var(--offwhite)">
+    <section class="py-24 px-6 paper-tex" style="background:var(--offwhite)">
       <!-- flower decoration -->
       <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
         <img src="flower_2.jpeg" alt="" class="deco-img" style="opacity:.18"/>
@@ -904,92 +1004,107 @@
     <!-- ── 5. PHOTO SECTIONS ────────────────────────────────── -->
 
     <!-- Groom: photo left, quote right -->
-    <div class="flex flex-col md:flex-row min-h-[480px]">
-      <div class="md:w-1/2 relative overflow-hidden" style="min-height:360px">
+    <div class="flex flex-col md:flex-row portrait-panel">
+      <div class="md:w-1/2 relative overflow-hidden" style="min-height:420px">
         <img src="Korede.jpeg"
           alt="Korede Alonge Matthias"
-          class="absolute inset-0 w-full h-full object-cover"/>
+          class="absolute inset-0 w-full h-full object-cover" style="object-position:top center"/>
         <div class="absolute inset-0"
-          style="background:linear-gradient(to right,rgba(8,19,42,.55) 0%,transparent 60%)"></div>
-        <div class="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 opacity-50"
-          style="border-color:var(--gold)"></div>
-        <div class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 opacity-50"
-          style="border-color:var(--gold)"></div>
+          style="background:linear-gradient(to right,rgba(8,19,42,.65) 0%,rgba(8,19,42,.1) 55%,transparent 80%)"></div>
+        <!-- elegant corner frames -->
+        <div class="absolute top-5 left-5 pointer-events-none" style="width:40px;height:40px;border-top:1.5px solid rgba(201,169,110,.65);border-left:1.5px solid rgba(201,169,110,.65)"></div>
+        <div class="absolute top-5 right-5 pointer-events-none" style="width:40px;height:40px;border-top:1.5px solid rgba(201,169,110,.65);border-right:1.5px solid rgba(201,169,110,.65)"></div>
+        <div class="absolute bottom-5 left-5 pointer-events-none" style="width:40px;height:40px;border-bottom:1.5px solid rgba(201,169,110,.65);border-left:1.5px solid rgba(201,169,110,.65)"></div>
+        <div class="absolute bottom-5 right-5 pointer-events-none" style="width:40px;height:40px;border-bottom:1.5px solid rgba(201,169,110,.65);border-right:1.5px solid rgba(201,169,110,.65)"></div>
       </div>
 
-      <div class="md:w-1/2 flex items-center justify-center p-10 md:p-16 f-right"
-        style="background:#EEF4FA">
-        <div style="max-width:380px">
-          <p class="font-cormorant tracking-[.35em] uppercase text-sm mb-4"
+      <div class="md:w-1/2 flex items-center justify-center p-10 md:p-16 f-right paper-tex"
+        style="background:linear-gradient(135deg,#EEF4FA 0%,#F8F6F2 100%)">
+        <div style="max-width:400px">
+          <p class="font-cormorant tracking-[.4em] uppercase text-xs mb-5"
             style="color:var(--sky)">The Groom</p>
-          <h3 class="font-vibes text-5xl mb-4" style="color:var(--navy)">Korede Alonge Matthias</h3>
-          <div class="h-px w-14 mb-6" style="background:var(--gold)"></div>
-          <p class="font-cormorant text-xl italic leading-relaxed" style="color:#2a3a50">
+          <h3 class="font-vibes mb-5" style="font-size:3.6rem;color:var(--navy);line-height:1.1">Korede Alonge Matthias</h3>
+          <div class="ornament-row mb-6" style="justify-content:flex-start;gap:10px">
+            <div style="width:48px;height:1px;background:linear-gradient(to right,var(--gold),transparent)"></div>
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 14C2 10 1 6 1 5 1 3 2.5 2 4 2c1 0 2 .8 4 2.5C10 2.8 11 2 12 2c1.5 0 3 1 3 3 0 1-1 5-7 9z" fill="#C9A96E" opacity=".7"/></svg>
+            <div style="width:48px;height:1px;background:linear-gradient(to left,var(--gold),transparent)"></div>
+          </div>
+          <p class="font-cormorant text-xl italic leading-relaxed mb-6" style="color:#2a3a50">
             "A man whose faith leads his feet, whose love is his loudest language. He walked into my world twice — the second time, I made sure there was no third time without him."
           </p>
-          <p class="font-cormorant text-sm tracking-widest mt-5" style="color:var(--sky)">— Susan</p>
+          <p class="font-cormorant text-sm tracking-widest" style="color:var(--sky)">— Susan</p>
         </div>
       </div>
     </div>
 
-    <!-- flower + rings divider -->
-    <div class="flex items-center justify-center gap-6 py-8" style="background:var(--offwhite)">
+    <!-- ornament divider between portraits -->
+    <div class="flex items-center justify-center gap-5 py-10" style="background:var(--offwhite)">
       <img src="flower_1.jpeg" alt="" class="deco-img"/>
-      <svg class="ring-glow" width="80" height="40" viewBox="0 0 80 40">
-        <circle cx="26" cy="20" r="17" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
-        <circle cx="54" cy="20" r="17" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
-      </svg>
+      <div class="ornament-row" style="flex:none;gap:12px">
+        <div class="line"></div>
+        <svg class="ring-glow" width="88" height="44" viewBox="0 0 88 44">
+          <circle cx="29" cy="22" r="18" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
+          <circle cx="59" cy="22" r="18" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
+        </svg>
+        <div class="line rev"></div>
+      </div>
       <img src="flower_2.jpeg" alt="" class="deco-img"/>
     </div>
 
     <!-- Bride: quote left, photo right -->
-    <div class="flex flex-col-reverse md:flex-row min-h-[480px]">
-      <div class="md:w-1/2 flex items-center justify-center p-10 md:p-16 f-left"
-        style="background:#EEF4FA">
-        <div style="max-width:380px" class="text-right">
-          <p class="font-cormorant tracking-[.35em] uppercase text-sm mb-4"
+    <div class="flex flex-col-reverse md:flex-row portrait-panel">
+      <div class="md:w-1/2 flex items-center justify-center p-10 md:p-16 f-left paper-tex"
+        style="background:linear-gradient(225deg,#EEF4FA 0%,#F8F6F2 100%)">
+        <div style="max-width:400px" class="text-right">
+          <p class="font-cormorant tracking-[.4em] uppercase text-xs mb-5"
             style="color:var(--sky)">The Bride</p>
-          <h3 class="font-vibes text-5xl mb-4" style="color:var(--navy)">Fawekun Aanuoluwapo Susan</h3>
-          <div class="h-px w-14 mb-6 ml-auto" style="background:var(--gold)"></div>
-          <p class="font-cormorant text-xl italic leading-relaxed" style="color:#2a3a50">
+          <h3 class="font-vibes mb-5" style="font-size:3.6rem;color:var(--navy);line-height:1.1">Fawekun Aanuoluwapo Susan</h3>
+          <div class="ornament-row mb-6" style="justify-content:flex-end;gap:10px">
+            <div style="width:48px;height:1px;background:linear-gradient(to right,var(--gold),transparent)"></div>
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 14C2 10 1 6 1 5 1 3 2.5 2 4 2c1 0 2 .8 4 2.5C10 2.8 11 2 12 2c1.5 0 3 1 3 3 0 1-1 5-7 9z" fill="#C9A96E" opacity=".7"/></svg>
+            <div style="width:48px;height:1px;background:linear-gradient(to left,var(--gold),transparent)"></div>
+          </div>
+          <p class="font-cormorant text-xl italic leading-relaxed mb-6" style="color:#2a3a50">
             "She is light that makes every room brighter and grace that makes every moment sweeter. Her laughter is the sound I want to fall asleep to for the rest of my life."
           </p>
-          <p class="font-cormorant text-sm tracking-widest mt-5" style="color:var(--sky)">— Korede</p>
+          <p class="font-cormorant text-sm tracking-widest" style="color:var(--sky)">— Korede</p>
         </div>
       </div>
 
-      <div class="md:w-1/2 relative overflow-hidden" style="min-height:360px">
+      <div class="md:w-1/2 relative overflow-hidden" style="min-height:420px">
         <img src="Susan.jpeg"
           alt="Fawekun Aanuoluwapo Susan"
-          class="absolute inset-0 w-full h-full object-cover"/>
+          class="absolute inset-0 w-full h-full object-cover" style="object-position:top center"/>
         <div class="absolute inset-0"
-          style="background:linear-gradient(to left,rgba(8,19,42,.55) 0%,transparent 60%)"></div>
-        <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 opacity-50"
-          style="border-color:var(--gold)"></div>
-        <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 opacity-50"
-          style="border-color:var(--gold)"></div>
+          style="background:linear-gradient(to left,rgba(8,19,42,.65) 0%,rgba(8,19,42,.1) 55%,transparent 80%)"></div>
+        <div class="absolute top-5 left-5 pointer-events-none" style="width:40px;height:40px;border-top:1.5px solid rgba(201,169,110,.65);border-left:1.5px solid rgba(201,169,110,.65)"></div>
+        <div class="absolute top-5 right-5 pointer-events-none" style="width:40px;height:40px;border-top:1.5px solid rgba(201,169,110,.65);border-right:1.5px solid rgba(201,169,110,.65)"></div>
+        <div class="absolute bottom-5 left-5 pointer-events-none" style="width:40px;height:40px;border-bottom:1.5px solid rgba(201,169,110,.65);border-left:1.5px solid rgba(201,169,110,.65)"></div>
+        <div class="absolute bottom-5 right-5 pointer-events-none" style="width:40px;height:40px;border-bottom:1.5px solid rgba(201,169,110,.65);border-right:1.5px solid rgba(201,169,110,.65)"></div>
       </div>
     </div>
 
     <!-- Together -->
-    <div class="relative overflow-hidden flex items-center justify-center"
-      style="min-height:420px;background:linear-gradient(160deg,var(--navy),var(--navy-mid))">
-      <!-- couple image fills background -->
+    <div class="relative overflow-hidden flex items-center justify-center dark-veil"
+      style="min-height:520px;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy) 100%)">
       <img src="couple_in_car.jpeg" alt="Korede and Susan"
         class="absolute inset-0 w-full h-full object-cover"
-        style="opacity:.25;object-position:center top"/>
+        style="opacity:.28;object-position:center top"/>
       <div class="absolute inset-0"
-        style="background:linear-gradient(to top,rgba(8,19,42,.88) 0%,rgba(8,19,42,.5) 100%)"></div>
-      <div class="relative text-center px-6 f-scale">
-        <div class="flex items-center justify-center gap-6 mb-4">
-          <lord-icon src="https://cdn.lordicon.com/ulnswmkk.json"
-            trigger="loop" delay="600"
-            colors="primary:#C9A96E,secondary:#A0CDE8"
-            style="width:56px;height:56px">
-          </lord-icon>
+        style="background:linear-gradient(to top,rgba(8,19,42,.92) 0%,rgba(8,19,42,.45) 50%,rgba(8,19,42,.7) 100%)"></div>
+      <div class="relative z-10 text-center px-6 f-scale">
+        <lord-icon src="https://cdn.lordicon.com/ulnswmkk.json"
+          trigger="loop" delay="600"
+          colors="primary:#C9A96E,secondary:#A0CDE8"
+          style="width:64px;height:64px;margin-bottom:16px">
+        </lord-icon>
+        <p class="font-vibes mb-4" style="font-size:clamp(3rem,9vw,5.5rem);color:var(--offwhite);text-shadow:0 4px 24px rgba(0,0,0,.5)">Together, Forever</p>
+        <div class="ornament-row mx-auto mb-4" style="max-width:320px">
+          <div class="line" style="background:linear-gradient(to right,transparent,rgba(201,169,110,.5))"></div>
+          <svg width="18" height="18" viewBox="0 0 16 16"><path d="M8 14C2 10 1 6 1 5 1 3 2.5 2 4 2c1 0 2 .8 4 2.5C10 2.8 11 2 12 2c1.5 0 3 1 3 3 0 1-1 5-7 9z" fill="#C9A96E" opacity=".75"/></svg>
+          <div class="line rev" style="background:linear-gradient(to left,transparent,rgba(201,169,110,.5))"></div>
         </div>
-        <p class="font-vibes text-5xl mb-2" style="color:var(--offwhite)">Together, Forever</p>
-        <p class="font-cormorant italic text-lg" style="color:rgba(160,205,232,.75)">
+        <p class="font-cormorant italic" style="font-size:1.2rem;color:rgba(160,205,232,.8);letter-spacing:.06em">
           "What God has joined together, let no one separate"
         </p>
       </div>
@@ -997,7 +1112,7 @@
 
 
     <!-- ── 6. RINGS FEATURE ─────────────────────────────────── -->
-    <section class="py-20 px-6" style="background:var(--offwhite)">
+    <section class="py-24 px-6 paper-tex" style="background:var(--offwhite)">
       <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
         <!-- actual ring image + SVG overlay -->
         <div class="flex-shrink-0 relative f-left" style="width:220px;height:220px">
@@ -1035,132 +1150,149 @@
 
 
     <!-- ── 7. EVENT DETAILS ─────────────────────────────────── -->
-    <section class="py-24 px-6"
-      style="background:linear-gradient(160deg,var(--navy),var(--navy-mid))">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="font-cormorant tracking-[.35em] uppercase text-sm mb-3 f-up"
-            style="color:rgba(160,205,232,.75)">You're Invited</p>
+    <section class="py-28 px-6 relative overflow-hidden dark-veil"
+      style="background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 55%,var(--navy) 100%)">
+      <div class="max-w-5xl mx-auto relative z-10">
+        <div class="text-center mb-18">
+          <p class="font-cormorant tracking-[.45em] uppercase text-xs mb-4 f-up"
+            style="color:rgba(160,205,232,.7)">You're Invited</p>
           <h2 class="font-playfair text-4xl md:text-5xl italic f-up"
-            style="color:var(--offwhite)">Celebration Details</h2>
-          <div class="gold-line mt-6 mx-auto f-up" style="max-width:260px">
+            style="color:var(--offwhite);text-shadow:0 2px 20px rgba(0,0,0,.4)">Celebration Details</h2>
+          <div class="gold-line mt-7 mx-auto f-up" style="max-width:280px">
             <lord-icon src="https://cdn.lordicon.com/lupuorrc.json"
               trigger="loop" delay="1000"
               colors="primary:#C9A96E,secondary:#A0CDE8"
-              style="width:36px;height:36px">
+              style="width:40px;height:40px">
             </lord-icon>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-3 gap-7 mt-14">
           <!-- Ceremony -->
-          <div class="card-lift rounded-lg overflow-hidden f-up"
-            style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.2)">
-            <img src="church.jpeg" alt="Church ceremony venue"
-              class="card-img"/>
-            <div class="p-6 text-center">
-              <p class="font-cormorant tracking-[.3em] uppercase text-xs mb-2"
+          <div class="card-lift overflow-hidden f-up"
+            style="background:rgba(15,32,64,.7);backdrop-filter:blur(16px);border:1px solid rgba(201,169,110,.22);border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.28)">
+            <div style="position:relative;overflow:hidden">
+              <img src="church.jpeg" alt="Church ceremony venue" class="card-img"
+                style="transition:transform .5s ease"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(8,19,42,.6) 100%)"></div>
+            </div>
+            <div class="p-7 text-center">
+              <p class="font-cormorant tracking-[.4em] uppercase text-xs mb-3"
                 style="color:var(--sky)">The Ceremony</p>
               <h4 class="font-playfair text-xl italic mb-4" style="color:var(--offwhite)">Church Service</h4>
-              <p class="font-cormorant text-base leading-relaxed"
-                style="color:rgba(248,246,242,.75)">
+              <p class="font-cormorant text-base leading-loose"
+                style="color:rgba(248,246,242,.72)">
                 Saturday, 29th August 2026<br/>10:00 AM
               </p>
-              <div class="h-px w-10 mx-auto my-4" style="background:var(--gold)"></div>
-              <p class="font-cormorant text-sm italic" style="color:var(--gold-dk)">[Church Venue — TBC]</p>
+              <div class="ornament-row my-5 mx-auto" style="max-width:120px">
+                <div class="line"></div>
+                <svg width="10" height="10" viewBox="0 0 16 16"><path d="M8 14C2 10 1 6 1 5 1 3 2.5 2 4 2c1 0 2 .8 4 2.5C10 2.8 11 2 12 2c1.5 0 3 1 3 3 0 1-1 5-7 9z" fill="#C9A96E" opacity=".7"/></svg>
+                <div class="line rev"></div>
+              </div>
+              <p class="font-cormorant text-sm italic" style="color:rgba(201,169,110,.6)">[Church Venue — TBC]</p>
             </div>
           </div>
 
           <!-- Reception -->
-          <div class="card-lift rounded-lg overflow-hidden f-up"
-            style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.2);transition-delay:.15s">
-            <img src="fountain_of_drinks_in_glass.jpeg" alt="Reception drinks"
-              class="card-img"/>
-            <div class="p-6 text-center">
-              <p class="font-cormorant tracking-[.3em] uppercase text-xs mb-2"
+          <div class="card-lift overflow-hidden f-up"
+            style="background:rgba(15,32,64,.7);backdrop-filter:blur(16px);border:1px solid rgba(201,169,110,.22);border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.28);transition-delay:.15s">
+            <div style="position:relative;overflow:hidden">
+              <img src="fountain_of_drinks_in_glass.jpeg" alt="Reception drinks" class="card-img"
+                style="transition:transform .5s ease"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(8,19,42,.6) 100%)"></div>
+            </div>
+            <div class="p-7 text-center">
+              <p class="font-cormorant tracking-[.4em] uppercase text-xs mb-3"
                 style="color:var(--sky)">The Reception</p>
               <h4 class="font-playfair text-xl italic mb-4" style="color:var(--offwhite)">Dinner &amp; Dancing</h4>
-              <p class="font-cormorant text-base leading-relaxed"
-                style="color:rgba(248,246,242,.75)">
+              <p class="font-cormorant text-base leading-loose"
+                style="color:rgba(248,246,242,.72)">
                 Saturday, 29th August 2026<br/>3:00 PM onwards
               </p>
-              <div class="h-px w-10 mx-auto my-4" style="background:var(--gold)"></div>
-              <p class="font-cormorant text-sm italic" style="color:var(--gold-dk)">[Reception Hall — TBC]</p>
+              <div class="ornament-row my-5 mx-auto" style="max-width:120px">
+                <div class="line"></div>
+                <svg width="10" height="10" viewBox="0 0 16 16"><path d="M8 14C2 10 1 6 1 5 1 3 2.5 2 4 2c1 0 2 .8 4 2.5C10 2.8 11 2 12 2c1.5 0 3 1 3 3 0 1-1 5-7 9z" fill="#C9A96E" opacity=".7"/></svg>
+                <div class="line rev"></div>
+              </div>
+              <p class="font-cormorant text-sm italic" style="color:rgba(201,169,110,.6)">[Reception Hall — TBC]</p>
             </div>
           </div>
 
           <!-- Dress Code -->
-          <div class="card-lift rounded-lg overflow-hidden f-up"
-            style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.2);transition-delay:.3s">
-            <!-- flower as card top image -->
-            <img src="flower_1.jpeg" alt="Flowers" class="card-img"/>
-            <div class="p-6 text-center">
-              <p class="font-cormorant tracking-[.3em] uppercase text-xs mb-2"
+          <div class="card-lift overflow-hidden f-up"
+            style="background:rgba(15,32,64,.7);backdrop-filter:blur(16px);border:1px solid rgba(201,169,110,.22);border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.28);transition-delay:.3s">
+            <div style="position:relative;overflow:hidden">
+              <img src="flower_1.jpeg" alt="Flowers" class="card-img"
+                style="transition:transform .5s ease"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(8,19,42,.6) 100%)"></div>
+            </div>
+            <div class="p-7 text-center">
+              <p class="font-cormorant tracking-[.4em] uppercase text-xs mb-3"
                 style="color:var(--sky)">Dress Code</p>
               <h4 class="font-playfair text-xl italic mb-4" style="color:var(--offwhite)">Navy, Sky &amp; Gold</h4>
-              <p class="font-cormorant text-base" style="color:rgba(248,246,242,.75)">Formal / Black Tie</p>
-              <div class="flex justify-center gap-3 mt-5">
-                <div class="w-8 h-8 rounded-full ring-2 ring-white/10" style="background:var(--navy)"></div>
-                <div class="w-8 h-8 rounded-full ring-2 ring-white/10" style="background:var(--sky)"></div>
-                <div class="w-8 h-8 rounded-full ring-2 ring-white/10" style="background:var(--silver)"></div>
-                <div class="w-8 h-8 rounded-full ring-2 ring-white/10" style="background:var(--gold)"></div>
+              <p class="font-cormorant text-base mb-5" style="color:rgba(248,246,242,.72)">Formal / Black Tie</p>
+              <div class="flex justify-center gap-3">
+                <div class="w-9 h-9 rounded-full" style="background:var(--navy);box-shadow:0 0 0 2px rgba(201,169,110,.35),0 4px 12px rgba(0,0,0,.3)"></div>
+                <div class="w-9 h-9 rounded-full" style="background:var(--sky);box-shadow:0 0 0 2px rgba(201,169,110,.35),0 4px 12px rgba(0,0,0,.3)"></div>
+                <div class="w-9 h-9 rounded-full" style="background:var(--silver);box-shadow:0 0 0 2px rgba(201,169,110,.35),0 4px 12px rgba(0,0,0,.3)"></div>
+                <div class="w-9 h-9 rounded-full" style="background:var(--gold);box-shadow:0 0 0 2px rgba(201,169,110,.35),0 4px 12px rgba(0,0,0,.3)"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="text-center mt-20 f-up">
-          <div class="gold-line mx-auto mb-8" style="max-width:280px"></div>
-          <p class="font-vibes text-5xl mb-4" style="color:var(--sky)">"Two are better than one..."</p>
-          <p class="font-cormorant italic text-lg" style="color:rgba(248,246,242,.65)">Ecclesiastes 4:9</p>
+        <div class="text-center mt-24 f-up">
+          <div class="gold-line mx-auto mb-8" style="max-width:300px"></div>
+          <p class="font-vibes mb-4" style="font-size:clamp(2.4rem,7vw,3.8rem);color:var(--sky)">"Two are better than one..."</p>
+          <p class="font-cormorant italic text-lg" style="color:rgba(248,246,242,.55)">Ecclesiastes 4:9</p>
         </div>
       </div>
     </section>
 
 
     <!-- ── 8. RSVP ──────────────────────────────────────────── -->
-    <section class="py-28 px-6" style="background:var(--offwhite)">
-      <div class="max-w-md mx-auto text-center">
-        <p class="font-cormorant tracking-[.35em] uppercase text-sm mb-3 f-up" style="color:var(--sky)">Kindly Reply By</p>
+    <section class="py-28 px-6 paper-tex" style="background:var(--offwhite)">
+      <div class="max-w-lg mx-auto relative z-10 text-center">
+        <p class="font-cormorant tracking-[.45em] uppercase text-xs mb-4 f-up" style="color:var(--sky)">Kindly Reply By</p>
         <h2 class="font-playfair text-4xl md:text-5xl italic mb-3 f-up" style="color:var(--navy)">RSVP</h2>
-        <p class="font-cormorant text-xl mb-4 f-up" style="color:#2a3a50">1st August 2026</p>
+        <p class="font-cormorant text-xl mb-6 f-up" style="color:#3a5068">1st August 2026</p>
 
-        <svg class="mx-auto mb-10 ring-glow f-up" width="60" height="30" viewBox="0 0 60 30">
-          <circle cx="20" cy="15" r="13" fill="none" stroke="#C9A96E" stroke-width="2"/>
-          <circle cx="40" cy="15" r="13" fill="none" stroke="#C9A96E" stroke-width="2"/>
-        </svg>
+        <div class="ornament-row mx-auto mb-10 f-up" style="max-width:260px">
+          <div class="line" style="background:linear-gradient(to right,transparent,rgba(201,169,110,.5))"></div>
+          <svg class="ring-glow" width="64" height="32" viewBox="0 0 64 32">
+            <circle cx="21" cy="16" r="13" fill="none" stroke="#C9A96E" stroke-width="2"/>
+            <circle cx="43" cy="16" r="13" fill="none" stroke="#C9A96E" stroke-width="2"/>
+          </svg>
+          <div class="line rev" style="background:linear-gradient(to left,transparent,rgba(201,169,110,.5))"></div>
+        </div>
 
-        <form class="space-y-4 f-up" @submit.prevent="rsvpSubmit()">
+        <form class="space-y-4 f-up text-left" @submit.prevent="rsvpSubmit()">
           <input type="text" placeholder="Your Full Name" x-model="form.name"
-            class="w-full px-5 py-3 rounded font-cormorant text-lg focus:outline-none focus:ring-2"
-            style="border:1.5px solid rgba(26,50,96,.25);color:var(--navy);background:white"/>
+            class="form-inp"/>
           <input type="email" placeholder="Email Address" x-model="form.email"
-            class="w-full px-5 py-3 rounded font-cormorant text-lg focus:outline-none focus:ring-2"
-            style="border:1.5px solid rgba(26,50,96,.25);color:var(--navy);background:white"/>
-          <select x-model="form.attending"
-            class="w-full px-5 py-3 rounded font-cormorant text-lg focus:outline-none"
-            style="border:1.5px solid rgba(26,50,96,.25);color:var(--navy);background:white">
+            class="form-inp"/>
+          <select x-model="form.attending" class="form-inp"
+            style="cursor:pointer">
             <option value="">Will you be attending?</option>
             <option value="yes">Joyfully Accept ♡</option>
             <option value="no">Regretfully Decline</option>
           </select>
           <input x-show="form.attending==='yes'" type="number"
             placeholder="Number of Guests" x-model="form.guests" min="1" max="6"
-            class="w-full px-5 py-3 rounded font-cormorant text-lg focus:outline-none"
-            style="border:1.5px solid rgba(26,50,96,.25);color:var(--navy);background:white"/>
+            class="form-inp"/>
           <textarea x-show="form.attending==='yes'"
             placeholder="Dietary requirements or notes (optional)"
-            x-model="form.notes" rows="2"
-            class="w-full px-5 py-3 rounded font-cormorant text-lg focus:outline-none resize-none"
-            style="border:1.5px solid rgba(26,50,96,.25);color:var(--navy);background:white"></textarea>
+            x-model="form.notes" rows="3"
+            class="form-inp" style="resize:none"></textarea>
           <button x-show="!rsvpDone" type="submit"
-            class="w-full py-4 font-cormorant text-lg tracking-[.3em] uppercase rounded transition-all hover:opacity-85 hover:-translate-y-0.5 duration-200"
-            style="background:linear-gradient(135deg,var(--navy),var(--navy-lt));color:var(--gold-lt);border:1px solid rgba(201,169,110,.3)">
+            class="btn-gold w-full py-5 font-cormorant text-lg uppercase">
             Send My RSVP
           </button>
           <div x-show="rsvpDone"
-            class="py-5 rounded font-cormorant text-lg italic"
-            style="background:rgba(74,141,181,.1);border:1px solid rgba(74,141,181,.3);color:var(--sky)">
+            x-transition:enter="transition ease-out duration-500"
+            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+            class="py-6 text-center font-cormorant text-lg italic"
+            style="background:rgba(74,141,181,.08);border:1px solid rgba(74,141,181,.28);border-radius:8px;color:var(--sky)">
             Thank you! We cannot wait to celebrate love with you. ♡
           </div>
         </form>
@@ -1169,35 +1301,48 @@
 
 
     <!-- ── 9. FOOTER ────────────────────────────────────────── -->
-    <footer class="py-20 text-center px-6 relative overflow-hidden" style="background:var(--navy)">
+    <footer class="py-24 text-center px-6 relative overflow-hidden dark-veil"
+      style="background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy) 100%)">
       <div class="absolute inset-0 pointer-events-none">
-        <div class="star" style="width:2px;height:2px;top:15%;left:12%;animation-duration:2.1s;animation-delay:.3s"></div>
-        <div class="star" style="width:3px;height:3px;top:30%;left:85%;animation-duration:3s;animation-delay:.8s"></div>
-        <div class="star" style="width:2px;height:2px;top:65%;left:25%;animation-duration:2.5s;animation-delay:1.2s"></div>
-        <div class="star" style="width:2px;height:2px;top:75%;left:70%;animation-duration:1.8s;animation-delay:.5s"></div>
-        <div class="star" style="width:3px;height:3px;top:45%;left:50%;animation-duration:2.8s;animation-delay:1.5s"></div>
+        <div class="star" style="width:2px;height:2px;top:10%;left:8%;animation-duration:2.1s;animation-delay:.3s"></div>
+        <div class="star" style="width:3px;height:3px;top:18%;left:78%;animation-duration:3s;animation-delay:.8s"></div>
+        <div class="star" style="width:1.5px;height:1.5px;top:28%;left:22%;animation-duration:2.5s;animation-delay:1.2s"></div>
+        <div class="star" style="width:2px;height:2px;top:35%;left:65%;animation-duration:1.8s;animation-delay:.5s"></div>
+        <div class="star" style="width:3px;height:3px;top:48%;left:42%;animation-duration:2.8s;animation-delay:1.5s"></div>
+        <div class="star" style="width:2px;height:2px;top:55%;left:88%;animation-duration:2.2s;animation-delay:.9s"></div>
+        <div class="star" style="width:1.5px;height:1.5px;top:62%;left:15%;animation-duration:3.1s;animation-delay:.4s"></div>
+        <div class="star" style="width:2px;height:2px;top:70%;left:55%;animation-duration:2.4s;animation-delay:1.8s"></div>
+        <div class="star" style="width:3px;height:3px;top:80%;left:32%;animation-duration:1.9s;animation-delay:.7s"></div>
+        <div class="star" style="width:1.5px;height:1.5px;top:88%;left:74%;animation-duration:2.7s;animation-delay:1.1s"></div>
+        <div class="star" style="width:2px;height:2px;top:22%;left:48%;animation-duration:2s;animation-delay:2s"></div>
+        <div class="star" style="width:2px;height:2px;top:75%;left:90%;animation-duration:2.6s;animation-delay:.2s"></div>
       </div>
 
       <div class="relative z-10">
-        <svg class="mx-auto mb-6 ring-glow" width="90" height="45" viewBox="0 0 90 45">
-          <circle cx="30" cy="22" r="19" fill="none" stroke="#C9A96E" stroke-width="3"/>
-          <circle cx="60" cy="22" r="19" fill="none" stroke="#C9A96E" stroke-width="3"/>
+        <svg class="mx-auto mb-8 ring-glow" width="110" height="55" viewBox="0 0 110 55">
+          <circle cx="36" cy="27" r="23" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
+          <circle cx="74" cy="27" r="23" fill="none" stroke="#C9A96E" stroke-width="2.5"/>
         </svg>
 
-        <p class="font-vibes text-6xl mb-3" style="color:var(--gold)">Korede &amp; Susan</p>
-        <div class="gold-line mx-auto mb-4" style="max-width:200px"></div>
-        <p class="font-cormorant italic text-sm mb-1" style="color:rgba(201,169,110,.55)">29th August 2026</p>
-        <p class="font-cormorant text-xs tracking-widest mb-8" style="color:rgba(248,246,242,.22)">#KorSus2026</p>
+        <p class="font-vibes mb-4" style="font-size:clamp(3.2rem,10vw,5rem);color:var(--gold);text-shadow:0 4px 24px rgba(201,169,110,.3)">Korede &amp; Susan</p>
+
+        <div class="ornament-row mx-auto mb-5" style="max-width:240px">
+          <div class="line"></div>
+          <svg width="18" height="18" viewBox="0 0 16 16"><path d="M8 14C2 10 1 6 1 5 1 3 2.5 2 4 2c1 0 2 .8 4 2.5C10 2.8 11 2 12 2c1.5 0 3 1 3 3 0 1-1 5-7 9z" fill="#C9A96E" opacity=".7"/></svg>
+          <div class="line rev"></div>
+        </div>
+
+        <p class="font-cormorant italic text-base mb-1" style="color:rgba(201,169,110,.6);letter-spacing:.12em">29th August 2026</p>
+        <p class="font-cormorant text-xs tracking-[.35em] mb-10" style="color:rgba(248,246,242,.2)">#KorSus2026</p>
 
         <lord-icon src="https://cdn.lordicon.com/lupuorrc.json"
           trigger="loop" delay="500"
           colors="primary:#C9A96E,secondary:#A0CDE8"
-          style="width:56px;height:56px">
+          style="width:64px;height:64px">
         </lord-icon>
 
-        <!-- footer flower row -->
-        <div class="flex justify-center gap-8 mt-8 opacity-22">
-          <svg width="32" height="32" viewBox="0 0 32 32"><g transform="translate(16,16)" fill="#C9A96E">
+        <div class="flex justify-center gap-10 mt-10" style="opacity:.3">
+          <svg width="30" height="30" viewBox="0 0 32 32"><g transform="translate(16,16)" fill="#C9A96E">
             <ellipse transform="rotate(0)"   cx="0" cy="-8" rx="3" ry="5.5"/>
             <ellipse transform="rotate(60)"  cx="0" cy="-8" rx="3" ry="5.5"/>
             <ellipse transform="rotate(120)" cx="0" cy="-8" rx="3" ry="5.5"/>
@@ -1206,7 +1351,7 @@
             <ellipse transform="rotate(300)" cx="0" cy="-8" rx="3" ry="5.5"/>
             <circle cx="0" cy="0" r="4"/>
           </g></svg>
-          <svg width="32" height="32" viewBox="0 0 32 32"><g transform="translate(16,16)" fill="#A0CDE8">
+          <svg width="30" height="30" viewBox="0 0 32 32"><g transform="translate(16,16)" fill="#A0CDE8">
             <ellipse transform="rotate(0)"   cx="0" cy="-8" rx="2.5" ry="5"/>
             <ellipse transform="rotate(45)"  cx="0" cy="-8" rx="2.5" ry="5"/>
             <ellipse transform="rotate(90)"  cx="0" cy="-8" rx="2.5" ry="5"/>
@@ -1217,7 +1362,7 @@
             <ellipse transform="rotate(315)" cx="0" cy="-8" rx="2.5" ry="5"/>
             <circle cx="0" cy="0" r="3.5"/>
           </g></svg>
-          <svg width="32" height="32" viewBox="0 0 32 32"><g transform="translate(16,16)" fill="#C9A96E">
+          <svg width="30" height="30" viewBox="0 0 32 32"><g transform="translate(16,16)" fill="#C9A96E">
             <ellipse transform="rotate(0)"   cx="0" cy="-8" rx="3" ry="5.5"/>
             <ellipse transform="rotate(60)"  cx="0" cy="-8" rx="3" ry="5.5"/>
             <ellipse transform="rotate(120)" cx="0" cy="-8" rx="3" ry="5.5"/>
@@ -1227,6 +1372,8 @@
             <circle cx="0" cy="0" r="4"/>
           </g></svg>
         </div>
+
+        <p class="font-cormorant text-xs mt-10" style="color:rgba(248,246,242,.15);letter-spacing:.2em">Made with love ♡</p>
       </div>
     </footer>
 
